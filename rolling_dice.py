@@ -24,27 +24,28 @@ score_board = [0 for _ in range(players)]
 while max(score_board) < max_score:
 
     for player in range(players):
-        print(f'\nPlayer #{player + 1}\'s turn.')
-        print(f'Your total score is: {score_board[player]}.\n')
+        current_player = player + 1
+        print(f'\nPlayer #{current_player}\'s turn.')
+        print(f'#{current_player} - Your total score is: {score_board[player]}.\n')
         current_score = 0
 
         while True:
-            should_roll = input("Whould you like to roll the dice? (y/n): ")
+            should_roll = input(f'#{current_player} - Whould you like to roll the dice? (y/n): ')
             if should_roll.lower() != 'y':
                 break
 
             value = roll_dice()
             if value == 1:
-                print("You lose your turn!")
+                print(f'#{current_player} - You lose your turn!')
                 current_score = 0
                 break
             else:
                 current_score += value
-                print(f'You rolled a {value}.')
-            print(f'Your score is {current_score}.')
+                print(f'#{current_player} - You rolled a {value}.')
+            print(f'#{current_player} - Your score for this turn is {current_score}.')
         
         score_board[player] += current_score
-        print(f'Player #{player +1} - Your total score is {score_board[player]}.')
+        print(f'Player #{current_player} - Your total score is {score_board[player]}.')
 
 max_score = max(score_board)
 winning_player = score_board.index(max_score) + 1
